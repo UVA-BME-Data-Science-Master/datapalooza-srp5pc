@@ -1,0 +1,112 @@
+---
+title: "Datapalooza Report"
+author: "Suchi Patel"
+output:
+  html_document:
+    df_print: paged
+---
+
+##Datapalooza
+#####11/9/18, 8am-6pm
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I found the entire day of Datapalooza extremely enjoyable. It was great to hear about the application of this field in both medical and non-medical fields. Additionally, I gained insight on the issues and implications surrounding data science (DS), which I was not aware of before. 
+
+### Introduction/Fireside Chat
+
+The first event was the Introduction and Fireside Chat. Philip Bourne, the director of the Data Science Institute, gave the former. He discussed the four paradigms of DS, which inherently described how the field has progressed. At the beginning, DS was simply about making observations. Soon after, we began to mathematically model our environment. Then, advancements in computational power enabled substantial progress and societal changes. Finally, Bourne stated that we are in the data-driven paradigm of DS. 
+
+The Fireside Chat, between Bourne and President Jim Ryan, was a discussion about the field. They largely discussed the Jeffersonian principle of an open environment. They both cited the importance of sharing data and sharing information in order to further progress towards the same goal of humanity. The biggest obstacle the field faced, they stated, is an issue in culture driven by personal achievement. However, they acknowledged that the ability to monetize and personal gain also drives progress. One way to combat this paradox was suggested as forming public/private partnerships.  
+
+Bourne also asked President Ryan about the future of the University. He stated that the University is working on developing a strategic plan with the goal of becoming the nation’s flagship university, as opposed to just Virginia’s flagship university. He stated that UVA should have the goal of being a world class institute with the purpose to serve others. There were three pillars to this: community, discovery, and service. He stated that the biggest challenge was deciding where to focus the attention and energy within these broad themes. DS specifically falls into the pillar of discovery. But with that comes the question of how to best foster the discovery of new knowledge and collaboration across disciplines.
+
+### Research Highlights
+
+The next event was machine learning (ML) research highlights where four individuals gave quick introductions to their topics of research. 
+
+##### Professor Kristen Naegle
+
+The first speaker was Professor Kristen Naegle. Her project was about OpenEnsembles, a Python Toolkit for Ensemble Clustering. Clustering is an unsupervised learning technique to identify patterns in the data. There are four main components to clustering. Data is often in N-dimensional feature space. Next, a distance metric is needed to gauge similarity between points. A clustering algorithm is of course needed to maximize intra-cluster similarity and minimize inter-cluster similarity. Finally, k tells you the number of clusters. Ensemble clustering specifically is clustering more than one way, or making perturbations each time. Perturbations are transforming the data to get new, robust outputs. The following are all examples of perturbation: projections into lower dimensions, noise, and starting points. Finishing algorithms are also important to consolidate outputs into one result. OpenEnsemble is a package that is working towards making ensemble clustering easier and more robust. 
+
+##### Yekaterina Gilbo
+
+The second speaker was Yekaterina Gilbo (Katya), a second-year grad student. She talked about automatic quantification in hypertrophic cardiomyopathy (HCM). Despite HCM being a highly prevalent disease, the risk of HCM is difficult to prognose and current treatments don’t progress. There is a cross-collaborative big data effort called the HCM registry. The registry consists of 40 research sites in the US, Canada, and Europe with 2750 enrolled patients. The goal of the registry is to identify markers associated with complications. The data in the registry is complex and it includes MRI, genetic tests, and blood samples. She mentioned that there was lots of complex data with minimal understanding. 
+
+The researcher herself is attempting to develop an autonomous cardiac MRI toolbox for HCM. The inputs are CMR images and the goal is the analyze biomarkers for risk stratification and therapeutic guidance. She is using two methods: automatic segmentation via DNNs and CNN image classification.  One major hurdle she noted from the beginning was that Class 1 and Class 2 HCMs are more frequent in the dataset. Additionally, there is high interobserver variability in the classification because the two classes are very similar. It is well-known that a computer vision algorithm can only do so well as the human expert. 
+
+The product has not been developed yet, so Katya spent the rest of her time discussing her approach and methodology so far. Inherently, this has been mostly trial-and-error. First, Katya did some data preprocessing. She extracted specific images for each patients, manually checking the quality and correcting errors in sequence extraction. After this, she tried numerous CNN classification methods. The first was transfer learning with VGG16 (a pre-trained network that is very good at extracting desired features). She modified various layers for her specific purpose but found it still was not very accurate. Second, she tried feature extraction with VGG16 and then SVM classification with AlexNet and GoogleNet. This input data was very clean and the model still failed to learn Class 1. Unexpectedly, the model worsened as more data was added. The next attempt of Katya’s was the most successful, and she is now currently working on optimizing it. She reduced the dimensions of the data by cropping the data to a small area around the septum manually, acknowledging it wasn’t a long term solution. Then, she trained a 3-layer CNN from scratch using keras and Tensorflow. The preliminary results were promising, with a 78% accuracy and many options for improvement. 
+
+##### Samarth Singh
+
+The third speaker was another graduate student named Samarth Singh. He is working on plagiarism detection using semantic analysis. Currently methods for plagiarism detection are naive and/or not robust. Examples are basic string/substring/subsequence matching, bag of words model, context based grammar, and backend clustering for faster retrieval. Samarth’s research looks at applying semantic analysis to key words. Semantic similarity inherently tokenises two strings into the keh components and calculates percentage of synonym matching. The results are promising. On heavily-modified papers (as plagiarized research usually is), there were very great results. Some issues are that there are undesired results when the dataset is small in size. Additionally, the method is not able to detect cross-language plagiarism . 
+
+##### Professor Madhur Behl
+
+The fourth and final speaker of the research highlights in machine learning was Professor Madhur Behl. I met Dr. Behl this summer and heard a less-formal version of this presentation then. I was excited to hear him speak again because his work is very exciting and his passion for it is so clear. Dr. Behl works in the field of autonomous vehicles. His idea is that autonomous vehicles will be able to drive better if they are able to handle edge cases in traffic.
+
+There are many components to autonomous driving. The system must have extensive (i.e. nearly perfect) abilities in localization and mapping, scene understanding, trajectory planning and control, and human interaction. Machine intelligence is highly dependent on its training data. If edge cases are not present in the training, the system will not know how to handle them. This is not acceptable in a field like autonomous driving.
+
+Dr. Behl believes that safety can be taught through agility. He inherently works with ML to teach autonomous cars to be agile and operate at the limits of their control. The manner in which he makes them operate at their limits is be autonomously racing cars against each other. This strategy exposes the scaled autonomous cars to more edge cases, which in turn allows them to be safer in normal driving situations. 
+
+### Skills Sessions: Machine learning with Python
+
+The skills session was led by Frank La Vigne, a software engineer for Microsoft. La Vigne noted that a big challenge faced by data scientists is building an environment with the right software installed and getting it to work. Microsoft has a DS virtual machine (DSVM) hosted in Azure built specifically for this issue. The workshop had 4 parts: ingest (create DSVM and import data), process (use Pandas to clean and prepare the data), predict (use scikit-learn to build a ML model), and visualize (using matplotlib). The tutorial is hosted in the following repository: https://github.com/Pcoric/computerscience/tree/master/Labs/Deep%20Learning/200%20-%20Machine%20Learning%20in%20Python
+
+I will provide a fairly high level summary of the tutorial because the steps and outputs are laid out very clearly in the tutorial above. Also, I recall some steps being changed during the workshop. For example, the tutorial is Linux specific and many had Macs and windows. La Vigne verbally provided multiple alternatives to the steps listed in the tutorial. Unfortunately, I did not write them down because I was busy implementing them. The summary below will be a summary from the tutorial above and may not match exactly what we did during the workshop (in terms of setup). 
+
+##### Ingest
+
+The first exercise is to create a DSVM. It has pre-installed tools built, installed, and configured already. An instance of a DSVM is created in Azure via the Azure Portal, with numerous sizing and settings options. After creation, the next step is to connect remotely to the Ubuntu desktop in the VM. However, I’m fairly certain we skipped this step and went straight to downloading a dataset and creating a notebook. Though the tutorial specifies Jupyter, we used Microsoft Azure Notebooks (which still support the same things). A python3 kernel was used. From there, a github link was provided to import a dataset called `flights` directly into the notebook environment. After import, the csv was read and converted to a Pandas DataFrame.
+
+##### Process
+
+The first exercise is to explore the data and understand its content and structure. The DataFrame is similar to the format that has been used in class. 
+
+The second exercise is the clean the data and prepare it for ML use. This is where we select the features relevant to our outcome and remove those that will not. Missing values are also dealt with by either removing rows or columns or replacing them with a meaningful value.
+
+Finally, we add a column to more specifically contain the feature we are looking for. Our output is the probability of delay. Since departure time is continuous (infinite possible values), they were binned by hour to increase ML accuracy. Additionally, we created indicator columns. These are inherently binary columns that indicate whether a particular row belongs to a said category. This makes the categorical data easy to understand for the ML algorithm as opposed to having multiple names. This is done with Pandas’s get_dummies method.
+
+##### Predict
+
+Now, the actual ML model is created. We use Scikit-learn, one of the most popular tools for building ML models. It supports numerous built-in algorithms and Python libraries. The model will ultimately predict whether a flight is likely to arrive on time. 
+
+The first step is to split the data into training and testing sets (use Skikit-learn’s train_test_split) The tutorial suggests a 80-20 split. La Vigne stated that the split generally ranges from 60-40 to 80-20. The DataFrame is also separated into feature columns (inputs) and label columns (what the ML algorithm is trying to predict). 
+
+The next step is to train an ML model. We trained a binary classifier that predicted whether a flight would be on-time or delayed. Scikit-learn’s RandomForestClassifier was used. This algorithm fits decision trees to the data while boosting overall accuracy and controlling for overfitting. After the model is fit (via the training sets), it can be used to predict on the test sets and determine the mean accuracy. The tutorial notes that mean accuracy may not always be the most reliable measure.
+
+The final step was other ways to measure the accuracy. For binary classification, one of the best overall measures is Area Under Receiver Operating Characteristic Curve (ROC AUC). This requires the generation of prediction probabilities (or estimates for each of the class the model can predict). Roc_auc_score is used to generate the score, which in this case was lower than the mean accuracy. This is because there are more on-time arrivals than delayed arrivals. Thus, predicting that a flight will be on-time means that the model is more likely to be correct. 
+
+Specific model behavior can be evaluated by creating a confusion matrix, or an error matrix. It quantifies true/false positives and negatives. This is very useful in a binary classification algorithm. Sklearn.metrics.confusion_matrix is used to create this, and it becomes clear that the model is very adept at predicting that a flight will be on time but not at predicting it will be delayed. Other measures of accuracy are precision and recall. Precision_score and recall_score can be used to calculate these, respectively. 
+
+##### Visualize
+
+Matplotlib is used to visualize the ML model inline. A number of visualizations are created. The first is the ROC curve. A dotted line at y=x represents a 50-50 chance of obtaining a correct answer. The solid blue line represents the model accuracy. 
+
+A helper function to predict delay was created. It had inputs for date and time, origin airport, destination airport. The output was the probability of arriving on time, using the ML algorithm. These predictions were then used to plot probability of on-time arrivals. 
+
+### Keynote
+
+The keynote presentation, given by Robin Thottungal, was titled, “Why the US Government Needs You”. He presented a number of case studies where using data science to explore deeper can generate new understanding and insights to complicated problems. These case studies are described below. 
+
+The first case study was about climate change, which is ruining crop yield around the world. Specifically, coffee crop is being decimated. Because of this, numerous coffee farmers are becoming economic asylum seekers. Drawing these connections between these disjointed events required DS> DS, Thottungal stated, can help policy makers understand complex interplays at hand.
+
+Thottungal also talked about the Docuamerica project. When the EPA was created, they asked people around the country to take pictures of the state of the environment. The goal was to monitor the improvement the agency was helping to enact. When comparing those pictures to today, the accomplishments of the EPA are extremely apparent. Yet, some suggest that the EPA is useless and should be dissolved. There’s a reason for this, though. Back then, problems were so simple that you could take a picture and instantly know what needed fixing. Now, Thottungal says, we are living in a world where information comes to us in different time frame. Using DS to evaluate everything holistically will enable us to see the true cause, connection, and effect of various events. 
+
+Additionally, Thottungal talked about how data visualization is an important part of driving transparency into complex issues. The problems that spurred EPA creation were undeniable because they were visual and present. Now, problems are much more complex. Thottungal believes that DS will play a large role in concisely connecting disjointed events to explain these complicated issues. 
+
+Some examples of this are natural disasters like hurricanes and wildfires. The frequency and severity of both is increasing. Simple visualizations and impact analysis can greatly aid first responder teams. The hurricane response, for example, is very disjoint due to a number of different agencies at play. Though these agencies have a similar broad goal, they aren’t working together. 
+
+Making decisions in general is not straightforward for the US government. Citizens, institution, industry, and global impact must all be analyzed. Even though data science is valuable, Thottungal also noted that there are potential dangers in using AI. One such danger is actually explaining the predictions of a classifier. Sometimes, a ML algorithm may be fitting to an unintended pattern and only appears accurate due to confounding. The other problem surrounding AI is ethics. For example, algorithms for predictive policing were found to be extremely racist. Yet, these tools enable decision makers to make decisions that affect people’s lives.
+
+Thottungal stated that the most important value a data scientist should have is empathy. It is their duty to be conscious of the inherent bias in training data used for algorithms. This comes into play in numerous fields including workforce realignment. The industries of autonomous vehicles, retail industry, and food industry are all at severe risk due to AI. Truck driving, for example, is the second most common job among men in the US. Even though autonomous vehicles could save the industry $300 billion, millions could lose their jobs. As a data scientist, one must balance the duty of maximizing profit for companies and the implications on the lives of so many people. Similar notions hold in retail and restaurants. For example, due to AmazonGo, 5-10 cashiers now do not have a job. Similarly, robots that automatically make food also caused workers to lose jobs.
+
+Thottungal started out in the private sector, where company profit is the priority. However, working in the public sector as a data scientist made him start thinking about the public side of AI. He encouraged all attendees to do the same. 
+
+### Thoughts
+
+I truly did enjoy the entire day. DS is valuable across every field and industry and, as I mentioned at the beginning, it was exciting to learn more bout the field outside the scope of our class. It was exciting to hear about President Ryan’s plans for the University, especially in the context of DS. Additionally, Katya’s presentation was notable for me because she openly talked about trial and error. I’ve always viewed ML as something you know how to do or you don’t. For the people who do, I imagined that you would present a problem and they would instantly know which algorithm to implement and how to optimize it. Katya’s presentation made it clear that even cutting-edge researchers have to use trial and error. It made me realize that even the most significant advancements in our field likely come from inelegant beginnings. The skills session was also a fun way to implement a very simple ML algorithm in an accessible environment. The tutorial was clear and useful for alter applications. 
+
+They keynote presentation was by far my favorite. This semester, due to our 4th year STS class, we have been talking a lot about evaluating the social implications of new technology. Thottungal’s presentation of various case studies provided a wonderful balance between the potential of AI and also the negative implications it may have on the people around you. I have been guilty of a “data-driven” mindset, which means that I have been guilty of overlooking the negative impacts that new technology may have on others. Thottungal’s presentation made me think about connections and effects that I hadn’t before. I hope that now I will holistically consider the sociotechnical implications of a problem. 
